@@ -1,0 +1,129 @@
+@keyframes fall {
+
+
+  from {transform: translateY(-200%);opacity:0;visibility:visible}
+  to {transform: translateY(0%);opacity:1;visibility:visible }
+
+
+}
+@keyframes hovering {
+
+
+  0% {transform: translateY(0%);visibility:visible}
+  50% {transform: translateY(3%);visibility:visible }
+  0% {transform: translateY(0%);visibility:visible}
+
+
+}
+
+
+.grid-container {
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(100% / 10), 1fr));
+  width: 100%;
+  row-gap: 30px;
+  max-width: 1200px;
+  height: auto;
+}
+
+.grid-item {
+  perspective:20px;
+  display: flex;
+  justify-content: center;
+  width:calc(100%/10)
+  aspect-ratio: 1 /1;
+  align-items: center ;
+    animation-name:hovering;
+  animation-delay:2s;
+  animation-duration:1s;
+  animation-timing-function:ease-out;
+  animation-fill-mode:both;
+  animation-iteration-count:infinite;
+
+}
+.heading {
+  text-align:center;
+  font-size:3rem;
+  font-family:"Poetsen One", sans-serif;
+}
+.ball {
+  perspective:60px;
+  text-align: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  font-size: 3.8rem;
+  color: white;
+  align-content: center;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  visibility:hidden;
+  animation-name:fall;
+  animation-delay:1s;
+  animation-duration:1s;
+  animation-timing-function:ease-out;
+  animation-fill-mode:forwards;
+  animation-iteration-count:1;
+}
+.percent {
+font-size:2rem;
+  mix-blend-mode:hard-light;
+line-height:15px;
+  transform:rotateX(-40deg);
+  transform-style: preserve-3d;
+  color:yellow;
+}
+.skew{
+  mix-blend-mode:difference;
+  transform:rotateX(20deg);
+  transform-style: preserve-3d;
+  color:gray;
+  margin-top:-15px;
+
+}
+.shadow {
+  width:50%;
+  height:3px;
+  background:gray;
+  filter:blur(5px);
+  border-radius:10px;
+  box-shadow:2px 2px 7px gray;
+}
+.align-center {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  margin-top:100px;
+}
+.hot {
+  background: radial-gradient(circle, rgba(252,216,146,1) 0%, rgba(231,140,19,1) 38%, rgba(231,19,27,1) 63%, rgba(191,20,26,1) 100%);
+  box-shadow:1px 1px 15px orangered;
+}
+.cold {
+  box-shadow:1px 1px 15px skyblue;
+  background: radial-gradient(
+    circle,
+    rgba(200, 205, 245, 1) 0%,
+    rgba(30, 173, 218, 1) 35%,
+    rgba(68, 130, 227, 1) 90%,
+    rgba(16, 197, 255, 1) 100%
+  );
+}
+
+.bullseye {
+background-image: radial-gradient(circle, rgba(136,10,10,1) 0%, rgba(150,9,9,1) 29%, rgba(241,3,0,1) 31%, rgba(223,50,47,1) 53%, rgba(136,10,10,1) 55%, rgba(136,10,10,1) 79%, rgba(223,50,47,1) 80%, rgba(223,50,47,1) 100%);
+}
+
+.misc {
+  animation-name:fall;
+  animation-duration:2s;
+  width:100px;
+  height:100px;
+  background-color:yellow;
+}
