@@ -15,7 +15,7 @@ function HotBalls({
           <div className="percent">{percentage}%</div>
         </div>
       </div>
-      <div className="shadow"></div>
+      <div className="shadow" style={{ animationDelay: `${delay}s` }}></div>
     </div>
   );
 }

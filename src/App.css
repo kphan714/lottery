@@ -6,6 +6,15 @@
 
 
 }
+
+@keyframes shadow-grow {
+
+
+  from {transform: scale(0%);opacity:0;visibility:visible}
+  to {transform: scale(100%);opacity:1;visibility:visible }
+
+
+}
 @keyframes hovering {
 
 
@@ -69,16 +78,18 @@
 }
 .percent {
 font-size:2rem;
-  mix-blend-mode:hard-light;
-line-height:15px;
-  transform:rotateX(-40deg);
+  mix-blend-mode:screen;
+line-height:10px;
+  transform:rotateX(-30deg);
   transform-style: preserve-3d;
-  color:yellow;
+  color:gray;
 }
 .skew{
-  mix-blend-mode:difference;
+  mix-blend-mode:screen;
+  -webkit-text-stroke:2px darkgray;
   transform:rotateX(20deg);
   transform-style: preserve-3d;
+  color:rgba(200,50,50, .7);
   color:gray;
   margin-top:-15px;
 
@@ -90,6 +101,12 @@ line-height:15px;
   filter:blur(5px);
   border-radius:10px;
   box-shadow:2px 2px 7px gray;
+  visibility:hidden;
+  animation-name:shadow-grow;
+  animation-duration:1s;
+  animation-timing-function:ease-out;
+  animation-fill-mode:forwards;
+  animation-iteration-count:1;
 }
 .align-center {
   display:flex;
@@ -102,7 +119,7 @@ line-height:15px;
   margin-top:100px;
 }
 .hot {
-  background: radial-gradient(circle, rgba(252,216,146,1) 0%, rgba(231,140,19,1) 38%, rgba(231,19,27,1) 63%, rgba(191,20,26,1) 100%);
+  background-image:  linear-gradient(0deg, rgba(54,5,5,.5) 0%, rgba(113,25,24,0) 50%, rgba(177,66,64,0) 60%, rgba(255,200,200, .5) 100%),radial-gradient(circle, rgba(252,216,146,1) 0%, rgba(231,140,19,1) 38%, rgba(231,19,27,1) 63%, rgba(191,20,26,1) 100%);
   box-shadow:1px 1px 15px orangered;
 }
 .cold {
