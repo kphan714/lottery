@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import mockBalls from "./GetHotSpotNumbers_Response.json";
-import HotBalls from "./components/hotballs";
+import Balls from "./components/balls";
 const arr = Array(10).fill("cell");
 const arr2 = Array(11).fill("cell");
 console.log("ARR", arr);
@@ -79,40 +79,43 @@ function App() {
 
   return (
     <div className="page">
-      <h1 className="heading">Hot Numbers</h1>
+      <h1 className="heading" style={{ color: "red" }}>
+        Hot Numbers
+      </h1>
       <div className="grid-container">
         {balls.hotNumbers?.map((el, index) => (
-          <HotBalls
+          <Balls
             delay={index * 0.2}
             ballNumber={el.number}
             percentage={el.percent}
+            type="hot"
           />
         ))}
       </div>
-      <h1 className="heading">Cold Numbers</h1>
+      <h1 className="heading" style={{ color: "skyblue" }}>
+        Cold Numbers
+      </h1>
       <div className="grid-container">
         {balls.coldNumbers?.map((el, index) => (
-          <div key={el.number} className="grid-item">
-            <div
-              className="ball cold"
-              style={{ animationDelay: `${index * 0.2 + 2}s` }}
-            >
-              {el.number}
-            </div>
-          </div>
+          <Balls
+            delay={index * 0.2 + 2}
+            ballNumber={el.number}
+            percentage={el.percent}
+            type="cold"
+          />
         ))}
       </div>
-      <h1 className="heading">Bulls Eye</h1>
+      <h1 className="heading" style={{ color: "darkred" }}>
+        Bulls Eye
+      </h1>
       <div className="grid-container">
         {balls.topBullsEye?.map((el, index) => (
-          <div key={el.number} className="grid-item">
-            <div
-              className="ball bullseye"
-              style={{ animationDelay: `${index * 0.2 + 3.5}s` }}
-            >
-              {el.number}
-            </div>
-          </div>
+          <Balls
+            delay={index * 0.2 + 3}
+            ballNumber={el.number}
+            percentage={el.percent}
+            type="bullseye"
+          />
         ))}
       </div>
     </div>
