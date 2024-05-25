@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import mockBalls from "./GetHotSpotNumbers_Response.json";
 import Balls from "./components/balls";
-const arr = Array(10).fill("cell");
-const arr2 = Array(11).fill("cell");
-console.log("ARR", arr);
+import backgroundImage from "./assets/pexels-padrinan-255379.jpg";
+
+// dimensions 3840 x 2160
 
 const endpoint =
   "https://drawgamefunc.azurewebsites.net/api/GetHotSpotNumbers/";
 const lastNumGames = 20;
-const daysAgo = 20;
+const daysAgo = 30;
 const hotCount = 10;
-const coldCount = 10;
+const coldCount = 1;
 const topBullsEyeCount = 10;
 
 class ApiError extends Error {
@@ -19,11 +19,6 @@ class ApiError extends Error {
     super();
     this.message = message;
   }
-}
-interface BallsCount {
-  hotCount: any[];
-  coldCount: any[];
-  topBullsEyeCount: any[];
 }
 
 type MockBalls = typeof mockBalls;
@@ -78,45 +73,47 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
-      <h1 className="heading" style={{ color: "red" }}>
-        Hot Numbers
-      </h1>
-      <div className="grid-container">
-        {balls.hotNumbers?.map((el, index) => (
-          <Balls
-            delay={index * 0.2}
-            ballNumber={el.number}
-            percentage={el.percent}
-            type="hot"
-          />
-        ))}
-      </div>
-      <h1 className="heading" style={{ color: "skyblue" }}>
-        Cold Numbers
-      </h1>
-      <div className="grid-container">
-        {balls.coldNumbers?.map((el, index) => (
-          <Balls
-            delay={index * 0.2 + 2}
-            ballNumber={el.number}
-            percentage={el.percent}
-            type="cold"
-          />
-        ))}
-      </div>
-      <h1 className="heading" style={{ color: "darkred" }}>
-        Bulls Eye
-      </h1>
-      <div className="grid-container">
-        {balls.topBullsEye?.map((el, index) => (
-          <Balls
-            delay={index * 0.2 + 3}
-            ballNumber={el.number}
-            percentage={el.percent}
-            type="bullseye"
-          />
-        ))}
+    <div className="fullscreen">
+      <div className="page" style={{ backgroundImage }}>
+        <h1 className="heading" style={{ color: "red" }}>
+          Hot Numbers
+        </h1>
+        <div className="grid-container">
+          {balls.hotNumbers?.map((el, index) => (
+            <Balls
+              delay={index * 0.2}
+              ballNumber={el.number}
+              percentage={el.percent}
+              type="hot"
+            />
+          ))}
+        </div>
+        <h1 className="heading" style={{ color: "skyblue" }}>
+          Cold Numbers
+        </h1>
+        <div className="grid-container">
+          {balls.coldNumbers?.map((el, index) => (
+            <Balls
+              delay={index * 0.2 + 2}
+              ballNumber={el.number}
+              percentage={el.percent}
+              type="cold"
+            />
+          ))}
+        </div>
+        <h1 className="heading" style={{ color: "darkred" }}>
+          Bulls Eye
+        </h1>
+        <div className="grid-container">
+          {balls.topBullsEye?.map((el, index) => (
+            <Balls
+              delay={index * 0.2 + 3}
+              ballNumber={el.number}
+              percentage={el.percent}
+              type="bullseye"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

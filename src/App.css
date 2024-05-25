@@ -1,163 +1,238 @@
 @keyframes fall {
-
-
-  from {transform: translateY(-200%);opacity:0;visibility:visible}
-  to {transform: translateY(0%);opacity:1;visibility:visible }
-
-
+  from {
+    transform: translateY(-200%);
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes fallHeading {
+  from {
+    transform: translateY(200%);
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    transform: translateY(200px);
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @keyframes shadow-grow {
-
-
-  from {transform: scale(0%);opacity:0;visibility:visible}
-  to {transform: scale(100%);opacity:1;visibility:visible }
-
-
+  from {
+    transform: scale(0%);
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    transform: scale(100%);
+    opacity: 1;
+    visibility: visible;
+  }
 }
 @keyframes hovering {
-
-
-  0% {transform: translateY(0%);visibility:visible}
-  50% {transform: translateY(3%);visibility:visible }
-  0% {transform: translateY(0%);visibility:visible}
-
-
+  0% {
+    transform: translateY(0%);
+    visibility: visible;
+  }
+  50% {
+    transform: translateY(3%);
+    visibility: visible;
+  }
+  0% {
+    transform: translateY(0%);
+    visibility: visible;
+  }
 }
 
+// dimensions 3840 x 2160
 
+.fullscreen {
+  box-sizing: borderbox;
+  width: 3840px;
+  height: 2160px;
+  border: 50px solid green;
+}
 .grid-container {
   margin: 50px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(calc(100% / 10), 1fr));
   width: 100%;
   row-gap: 30px;
-  max-width: 1200px;
+  max-width: 3000px;
   height: auto;
+  /* border:2px solid red; */
 }
 
 .grid-item {
-  perspective:20px;
+  /* border:2px solid green; */
+  perspective: 20px;
   display: flex;
   justify-content: center;
-  width:calc(100%/10)
   aspect-ratio: 1 /1;
-  align-items: center ;
-    animation-name:hovering;
-  animation-delay:2s;
-  animation-duration:1s;
-  animation-timing-function:ease-out;
-  animation-fill-mode:both;
-  animation-iteration-count:infinite;
-
+  align-items: center;
+  animation-name: hovering;
+  animation-delay: 2s;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 }
 
 #effect {
-  position:absolute;
-  width:80px;
-  top:100px;
-  height:200px;
-  background:yellow;
-border:1px solid gray;
+  position: absolute;
+  width: 80px;
+  top: 100px;
+  height: 200px;
+  background: yellow;
+  border: 1px solid gray;
 }
 .heading {
-  text-align:center;
-  font-size:3rem;
-  font-family:"Poetsen One", sans-serif;
-  text-shadow:2px 2px 10px lightgray;
+  -webkit-text-stroke: 10px white;
+
+  margin-top: -100px;
+  text-align: center;
+  font-size: 13rem;
+  font-family: "Luckiest Guy", sans-serif;
+  text-shadow: 2px 2px 10px lightgray;
+  animation-name: fallHeading;
+  visibility: hidden;
+  animation-delay: 5s;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 .ball {
-  perspective:60px;
+  perspective: 100px;
   text-align: center;
-  height: 100px;
-  width: 100px;
-  border-radius: 50px;
-  font-size: 3.8rem;
+  height: 250px;
+  width: 250px;
+  border-radius: 125px;
+  font-size: 6rem;
   color: white;
   align-content: center;
   font-family: "Poetsen One", sans-serif;
   font-weight: 400;
   font-style: normal;
-  visibility:hidden;
-  animation-name:fall;
-  animation-delay:1s;
-  animation-duration:1s;
-  animation-timing-function:ease-out;
-  animation-fill-mode:forwards;
-  animation-iteration-count:1;
+  visibility: hidden;
+  animation-name: fall;
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 .percent {
-font-size:2rem;
-  mix-blend-mode:screen;
-line-height:10px;
-  transform:rotateX(-30deg);
+  font-size: 4rem;
+  margin-top: -20px;
+  mix-blend-mode: screen;
+  transform: rotateX(-20deg);
   transform-style: preserve-3d;
-  color:gray;
-}
-.skew{
-  mix-blend-mode:screen;
-  -webkit-text-stroke:2px darkgray;
-  transform:rotateX(20deg);
-  transform-style: preserve-3d;
-  color:rgba(200,50,50, .7);
-  color:gray;
-  margin-top:-15px;
 
+  -webkit-text-stroke: 2px darkgray;
+  color: gray;
+}
+.skew {
+  font-size: 8rem;
+  mix-blend-mode: screen;
+  -webkit-text-stroke: 5px darkgray;
+  transform: rotateX(20deg);
+  transform-style: preserve-3d;
+  color: rgba(200, 50, 50, 0.7);
+  color: gray;
+  margin-top: 20px;
 }
 .shadow {
-  width:50%;
-  max-width:100px;
-  height:3px;
-  background:gray;
-  filter:blur(5px);
-  border-radius:10px;
-  box-shadow:2px 2px 7px gray;
-  visibility:hidden;
-  animation-name:shadow-grow;
-  animation-duration:1s;
-  animation-timing-function:ease-out;
-  animation-fill-mode:forwards;
-  animation-iteration-count:1;
+  width: 50%;
+  max-width: 200px;
+  height: 50px;
+  background: #e4e2e2;
+  z-index: -1;
+  filter: blur(5px);
+  border-radius: 50px;
+  box-shadow: 2px 2px 100px gray;
+  visibility: hidden;
+  animation-name: shadow-grow;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 .align-center {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.page {
   display: flex;
   flex-direction: column;
-  margin-top:100px;
+  align-items: center;
+}
+
+.page {
+  display: flex;
+  width: 3840px;
+  height: 2160px;
+  flex-direction: column;
+  background-image: url("./assets/LOTTERYBACKGROUND.jpg");
+  margin-top: 200px;
 }
 .hot {
-  background-image:  linear-gradient(0deg, rgba(54,5,5,.5) 0%, rgba(113,25,24,0) 50%, rgba(177,66,64,0) 60%, rgba(255,200,200, .5) 100%),radial-gradient(circle, rgba(252,216,146,1) 0%, rgba(231,140,19,1) 38%, rgba(231,19,27,1) 63%, rgba(191,20,26,1) 100%);
-  box-shadow:1px 1px 15px orangered;
+  background-image: linear-gradient(
+      0deg,
+      rgba(54, 5, 5, 0.5) 0%,
+      rgba(113, 25, 24, 0) 50%,
+      rgba(177, 66, 64, 0) 60%,
+      rgba(255, 200, 200, 0.5) 100%
+    ),
+    radial-gradient(
+      circle,
+      rgba(252, 216, 146, 1) 0%,
+      rgba(231, 140, 19, 1) 38%,
+      rgba(231, 19, 27, 1) 63%,
+      rgba(191, 20, 26, 1) 100%
+    );
+  box-shadow: 1px 1px 15px orangered;
 }
 .cold {
-  box-shadow:1px 1px 15px skyblue;
-  background:
-  linear-gradient(0deg, rgba(54,5,5,.5) 0%, rgba(113,25,24,0) 50%, rgba(177,66,64,0) 60%, rgba(255,200,200, .5) 100%),
-
-  radial-gradient(
-    circle,
-    rgba(200, 205, 245, 1) 0%,
-    rgba(30, 173, 218, 1) 35%,
-    rgba(68, 130, 227, 1) 90%,
-    rgba(16, 197, 255, 1) 100%
-  );
+  box-shadow: 1px 1px 15px skyblue;
+  background: linear-gradient(
+      0deg,
+      rgba(54, 5, 5, 0.5) 0%,
+      rgba(113, 25, 24, 0) 50%,
+      rgba(177, 66, 64, 0) 60%,
+      rgba(255, 200, 200, 0.5) 100%
+    ),
+    radial-gradient(
+      circle,
+      rgba(200, 205, 245, 1) 0%,
+      rgba(30, 173, 218, 1) 35%,
+      rgba(68, 130, 227, 1) 90%,
+      rgba(16, 197, 255, 1) 100%
+    );
 }
 
 .bullseye {
-background-image:
-linear-gradient(0deg, rgba(54,5,5,.5) 0%, rgba(113,25,24,0) 50%, rgba(177,66,64,0) 60%, rgba(255,200,200, .5) 100%),
-
-radial-gradient(circle, rgba(136,10,10,1) 0%, rgba(150,9,9,1) 29%, rgba(241,3,0,1) 31%, rgba(223,50,47,1) 53%, rgba(136,10,10,1) 55%, rgba(136,10,10,1) 79%, rgba(223,50,47,1) 80%, rgba(223,50,47,1) 100%);
+  background-image: linear-gradient(
+      0deg,
+      rgba(54, 5, 5, 0.5) 0%,
+      rgba(113, 25, 24, 0) 50%,
+      rgba(177, 66, 64, 0) 60%,
+      rgba(255, 200, 200, 0.5) 100%
+    ),
+    radial-gradient(
+      circle,
+      rgba(136, 10, 10, 1) 0%,
+      rgba(150, 9, 9, 1) 29%,
+      rgba(241, 3, 0, 1) 31%,
+      rgba(223, 50, 47, 1) 53%,
+      rgba(136, 10, 10, 1) 55%,
+      rgba(136, 10, 10, 1) 79%,
+      rgba(223, 50, 47, 1) 80%,
+      rgba(223, 50, 47, 1) 100%
+    );
 }
-
-.misc {
-  animation-name:fall;
-  animation-duration:2s;
-  width:100px;
-  height:100px;
-  background-color:yellow;
+.video {
+  filter: hue-rotate(-90deg);
 }

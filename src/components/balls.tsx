@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import ParticleGenerator from "../particle-generator";
 
 function Balls({
   delay,
@@ -13,18 +14,21 @@ function Balls({
 }) {
   const effect = useRef<HTMLCanvasElement>(null);
 
-  // useEffect(() => {
-  //   if (effect.current) {
-  //     let ctx = effect.current.getContext("2d");
-  //     let y0 = effect.current.height;
-  //     ctx?.fillRect(0, y0, 20, -20);
-  //     ctx.fillStyle = "rgb(200,100,100)";
-  //   }
-  // }, []);
+  useEffect(() => {
+    const canvas = effect.current;
+    console.log("canvas", canvas);
+    const particles = new ParticleGenerator(canvas!);
+
+    console.log("particles", particles);
+    particles?.moveUp("square", { x: 50, y: 50 }, { x: 200, y: 200 }, 1);
+  }, []);
 
   return (
     <div className="align-center">
-      {/* <canvas ref={effect} id="effect"></canvas> */}
+      <video width="200" height="100" loop={true} muted={true}>
+        <source src="../assets/91087-629483817_small.mp4" type="video/mp4" />
+      </video>
+      {/* <canvas ref={effect} id="effect" width="500px" height="500px"></canvas> */}
       <div className="grid-item" style={{ animationDelay: `${delay}s` }}>
         <div className={`ball ${type}`} style={{ animationDelay: `${delay}s` }}>
           <div className="skew">{ballNumber}</div>
