@@ -1,4 +1,4 @@
-import video from "../assets/amended.mp4";
+import video from "../assets/fire.mp4";
 import "../App.css";
 export default function Test() {
   return (
