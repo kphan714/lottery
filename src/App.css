@@ -53,20 +53,20 @@
 // dimensions 3840 x 2160
 
 .fullscreen {
-  box-sizing: borderbox;
-  width: 3840px;
-  height: 2160px;
+  box-sizing: border-box;
+  height: 3840px;
+  width: 2160px;
   border: 50px solid green;
 }
 .grid-container {
-  margin: 50px auto;
+  box-sizing: border-box;
+  margin: auto 100px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(calc(100% / 10), 1fr));
-  width: 100%;
+  width: 70%;
   row-gap: 30px;
-  max-width: 3000px;
-  height: auto;
-  /* border:2px solid red; */
+  max-width: 2000px;
+  height: 700px;
 }
 
 .grid-item {
@@ -93,11 +93,12 @@
   border: 1px solid gray;
 }
 .heading {
-  -webkit-text-stroke: 10px white;
+  -webkit-text-stroke: 5px white;
 
   margin-top: -100px;
-  text-align: center;
-  font-size: 13rem;
+  margin-left: 100px;
+  /* text-align: center; */
+  font-size: 10rem;
   font-family: "Luckiest Guy", sans-serif;
   text-shadow: 2px 2px 10px lightgray;
   animation-name: fallHeading;
@@ -108,12 +109,32 @@
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
 }
+
+.refreshing {
+  -webkit-text-stroke: 5px white;
+
+  margin-top: -100px;
+  margin-left: 100px;
+  /* text-align: center; */
+  font-size: 10rem;
+  font-family: "Luckiest Guy", sans-serif;
+  text-shadow: 2px 2px 10px lightgray;
+  animation-name: fallHeading;
+  visibility: hidden;
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
 .ball {
   perspective: 100px;
   text-align: center;
-  height: 250px;
-  width: 250px;
-  border-radius: 125px;
+  z-index: 10;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
   font-size: 6rem;
   color: white;
   align-content: center;
@@ -129,7 +150,7 @@
   animation-iteration-count: 1;
 }
 .percent {
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-top: -20px;
   mix-blend-mode: screen;
   transform: rotateX(-20deg);
@@ -139,21 +160,22 @@
   color: gray;
 }
 .skew {
-  font-size: 8rem;
+  font-size: 5rem;
   mix-blend-mode: screen;
   -webkit-text-stroke: 5px darkgray;
   transform: rotateX(20deg);
   transform-style: preserve-3d;
   color: rgba(200, 50, 50, 0.7);
   color: gray;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .shadow {
+  mix-blend-mode: multiply;
   width: 50%;
-  max-width: 200px;
+  max-width: 100px;
   height: 50px;
   background: #e4e2e2;
-  z-index: -1;
+  z-index: 0;
   filter: blur(5px);
   border-radius: 50px;
   box-shadow: 2px 2px 100px gray;
@@ -171,12 +193,13 @@
 }
 
 .page {
-  display: flex;
-  width: 3840px;
-  height: 2160px;
+  /* display: flex; */
+  z-index: -20;
+  height: 3440px;
+  width: 2160px;
   flex-direction: column;
   background-image: url("./assets/LOTTERYBACKGROUND.jpg");
-  margin-top: 200px;
+  margin-top: 0px;
 }
 .hot {
   background-image: linear-gradient(

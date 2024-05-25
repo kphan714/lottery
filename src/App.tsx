@@ -45,10 +45,12 @@ async function fetchBalls() {
 
   return (await apiResponse.json()) as MockBalls;
 }
+let intervalId: number;
+const interval = 10000;
 
 function App() {
   const [hasLoaded, setLoaded] = useState(false);
-
+  const [timer, setTimer] = useState(0);
   const [balls, setBalls] = useState<MockBalls>({
     hotNumbers: [],
     coldNumbers: [],
@@ -56,64 +58,84 @@ function App() {
   } as unknown as MockBalls);
 
   useEffect(() => {
+    setLoaded(false);
     try {
       const returnedBalls = fetchBalls();
       returnedBalls.then((balls) => {
         setBalls(balls);
+        setLoaded(true);
       });
     } catch (error) {
       let errorMsg: string = "";
       // make sure this check satisfies ApiError class
       if (error instanceof Error) {
-        alert(error.message);
         errorMsg = error.message;
+        throw new Error(errorMsg);
       }
     }
-    setLoaded(true);
-  }, []);
+  }, [timer]);
 
+  useEffect(() => {
+    intervalId = setInterval(() => {
+      setTimer((t) => t + 1);
+    }, interval);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
   return (
-    <div className="fullscreen">
-      <div className="page" style={{ backgroundImage }}>
-        <h1 className="heading" style={{ color: "red" }}>
-          Hot Numbers
-        </h1>
-        <div className="grid-container">
-          {balls.hotNumbers?.map((el, index) => (
+    <div className="page" style={{ backgroundImage }}>
+      <h1 className="heading" style={{ color: "red" }}>
+        Hot Numbers
+      </h1>
+      <div className="grid-container">
+        {hasLoaded ? (
+          balls.hotNumbers?.map((el, index) => (
             <Balls
               delay={index * 0.2}
               ballNumber={el.number}
               percentage={el.percent}
               type="hot"
             />
-          ))}
-        </div>
-        <h1 className="heading" style={{ color: "skyblue" }}>
-          Cold Numbers
-        </h1>
-        <div className="grid-container">
-          {balls.coldNumbers?.map((el, index) => (
+          ))
+        ) : (
+          <h3 className="refreshing">Refreshing..</h3>
+        )}
+      </div>
+      <h1 className="heading" style={{ color: "skyblue" }}>
+        Cold Numbers
+      </h1>
+      <div className="grid-container">
+        {hasLoaded ? (
+          balls.coldNumbers?.map((el, index) => (
             <Balls
               delay={index * 0.2 + 2}
               ballNumber={el.number}
               percentage={el.percent}
               type="cold"
             />
-          ))}
-        </div>
-        <h1 className="heading" style={{ color: "darkred" }}>
-          Bulls Eye
-        </h1>
-        <div className="grid-container">
-          {balls.topBullsEye?.map((el, index) => (
+          ))
+        ) : (
+          <h3 className="refreshing">Refreshing..</h3>
+        )}
+      </div>
+      <h1 className="heading" style={{ color: "darkred" }}>
+        Bulls Eye
+      </h1>
+      <div className="grid-container">
+        {hasLoaded ? (
+          balls.topBullsEye?.map((el, index) => (
             <Balls
               delay={index * 0.2 + 3}
               ballNumber={el.number}
               percentage={el.percent}
               type="bullseye"
             />
-          ))}
-        </div>
+          ))
+        ) : (
+          <h3 className="refreshing">Refreshing..</h3>
+        )}
       </div>
     </div>
   );
